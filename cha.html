@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chariz Singian Fontanilla | Personal Portfolio & Gallery</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rosebrand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        pinkbg: '#fff9fa',
+                        darkbg: '#140c10',
+                        darkcard: '#1f1319',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .glass-pink {
+            background: rgba(255, 241, 242, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .dark .glass-pink {
+            background: rgba(31, 19, 25, 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .text-gradient-pink {
+            background: linear-gradient(135deg, #e11d48 0%, #fb7185 50%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .polaroid-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .polaroid-card:hover {
+            transform: translateY(-6px) rotate(1deg);
+        }
+    </style>
+</head>
+<body class="bg-pinkbg dark:bg-darkbg text-slate-800 dark:text-rose-100 font-sans transition-colors duration-300 min-h-screen flex flex-col selection:bg-rosebrand-400 selection:text-white">
+
+    <!-- Sticky Pink Glassmorphism Header -->
+    <header class="sticky top-0 z-40 glass-pink border-b border-rose-200/60 dark:border-rose-900/40 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rosebrand-600 via-rosebrand-500 to-pink-400 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-rosebrand-500/20 group-hover:scale-105 transition-transform">
+                    CF
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-xl text-slate-900 dark:text-rose-50 block leading-tight">Chariz Fontanilla</span>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-rosebrand-600 dark:text-rosebrand-300">CS Student & Innovator</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700 dark:text-rose-200">
+                <a href="#about" class="hover:text-rosebrand-600 dark:hover:text-rosebrand-400 transition-colors">About</a>
+                <a href="#education" class="hover:text-rosebrand-600 dark:hover:text-rosebrand-400 transition-colors">Education</a>
+                <a href="#experience" class="hover:text-rosebrand-600 dark:hover:text-rosebrand-400 transition-colors">Experience</a>
+                <a href="#gallery" class="hover:text-rosebrand-600 dark:hover:text-rosebrand-400 transition-colors flex items-center gap-1">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-rosebrand-500"></i> Gallery
+                </a>
+                <a href="#skills" class="hover:text-rosebrand-600 dark:hover:text-rosebrand-400 transition-colors">Skills</a>
+                <a href="#contact" class="hover:text-rosebrand-600 dark:hover:text-rosebrand-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Quick Action Controls -->
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" aria-label="Toggle Theme" class="p-2.5 rounded-2xl bg-rose-100/80 dark:bg-rose-950/60 text-rosebrand-700 dark:text-rose-200 hover:bg-rose-200 dark:hover:bg-rose-900 transition-all">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                </button>
+
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-rosebrand-600 to-pink-600 hover:from-rosebrand-500 hover:to-pink-500 text-white px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider shadow-lg shadow-rosebrand-500/25 hover:shadow-rosebrand-500/40 transition-all hover:-translate-y-0.5">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 fill-current"></i> Let's Connect
+                </a>
+
+                <button id="mobileMenuBtn" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-2xl text-rosebrand-700 dark:text-rose-200 hover:bg-rose-100 dark:hover:bg-rose-900">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-rose-200 dark:border-rose-900 bg-pinkbg/95 dark:bg-darkcard/95 px-6 pt-3 pb-6 space-y-3">
+            <a href="#about" class="block py-2 font-medium text-slate-800 dark:text-rose-100 hover:text-rosebrand-600">About Me</a>
+            <a href="#education" class="block py-2 font-medium text-slate-800 dark:text-rose-100 hover:text-rosebrand-600">Education</a>
+            <a href="#experience" class="block py-2 font-medium text-slate-800 dark:text-rose-100 hover:text-rosebrand-600">Experience</a>
+            <a href="#gallery" class="block py-2 font-medium text-slate-800 dark:text-rose-100 hover:text-rosebrand-600">Photo Memories</a>
+            <a href="#skills" class="block py-2 font-medium text-slate-800 dark:text-rose-100 hover:text-rosebrand-600">Skills & Competencies</a>
+            <a href="#contact" class="block py-2 font-medium text-slate-800 dark:text-rose-100 hover:text-rosebrand-600">Contact Details</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="hero" class="relative pt-12 pb-20 md:py-28 overflow-hidden">
+            <!-- Rose Background Ambient Glows -->
+            <div class="absolute top-10 left-1/4 w-96 h-96 bg-rosebrand-300/20 dark:bg-rosebrand-600/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-pink-400/20 dark:bg-pink-900/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 dark:bg-rose-950/80 border border-rose-300/80 dark:border-rose-800 text-rosebrand-700 dark:text-rose-300 text-xs font-bold tracking-wide">
+                            <i data-lucide="flower-2" class="w-4 h-4 text-rosebrand-500 animate-spin" style="animation-duration: 12s;"></i>
+                            Salutatorian • BS Computer Science Freshman
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+                            Designing the Future with <span class="text-gradient-pink font-serif italic">Purpose & Passion.</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-600 dark:text-rose-200/90 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Hi! I'm <strong class="text-slate-900 dark:text-rose-50">Chariz Singian Fontanilla</strong>—a forward-thinking Computer Science student at Wesleyan University Philippines with practical public service exposure and a drive for excellence.
+                        </p>
+
+                        <!-- Quick Badges -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                            <div class="p-4 rounded-2xl bg-white dark:bg-darkcard border border-rose-200/70 dark:border-rose-900/60 shadow-sm">
+                                <div class="text-xs text-rosebrand-600 dark:text-rosebrand-400 font-bold uppercase tracking-wider">Education</div>
+                                <div class="text-sm font-bold text-slate-800 dark:text-rose-100 mt-1 truncate">WUP (Maria Aurora)</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white dark:bg-darkcard border border-rose-200/70 dark:border-rose-900/60 shadow-sm">
+                                <div class="text-xs text-rosebrand-600 dark:text-rosebrand-400 font-bold uppercase tracking-wider">Academic Honor</div>
+                                <div class="text-sm font-bold text-slate-800 dark:text-rose-100 mt-1 truncate">With High Honors</div>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1 p-4 rounded-2xl bg-white dark:bg-darkcard border border-rose-200/70 dark:border-rose-900/60 shadow-sm">
+                                <div class="text-xs text-rosebrand-600 dark:text-rosebrand-400 font-bold uppercase tracking-wider">Immersion</div>
+                                <div class="text-sm font-bold text-slate-800 dark:text-rose-100 mt-1 truncate">Dept. of Engineering</div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Actions -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#gallery" class="px-7 py-3.5 rounded-2xl bg-slate-900 dark:bg-rosebrand-500 text-white font-bold text-sm hover:bg-rosebrand-600 dark:hover:bg-rosebrand-600 transition-all shadow-md flex items-center gap-2">
+                                <i data-lucide="image" class="w-4 h-4"></i> Explore Photo Memories
+                            </a>
+                            <button onclick="copyToClipboard('charizsingianfontanill@gmail.com', 'Email address copied!')" class="px-6 py-3.5 rounded-2xl bg-white dark:bg-darkcard border border-rose-300 dark:border-rose-800 text-slate-800 dark:text-rose-100 font-bold text-sm hover:bg-rose-50 dark:hover:bg-rose-900/50 transition-all flex items-center gap-2 group">
+                                <i data-lucide="copy" class="w-4 h-4 text-rosebrand-500"></i> Copy Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Polaroid Banner -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-sm">
+                            <div class="absolute -inset-2 bg-gradient-to-r from-rosebrand-400 to-pink-500 rounded-3xl blur-xl opacity-30 dark:opacity-40 animate-pulse"></div>
+                            
+                            <div class="relative bg-white dark:bg-darkcard p-5 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-2xl">
+                                <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950">
+                                    <img src="https://placehold.co/400x500/ffd1dc/9f1239?text=Chariz+S.+Fontanilla" alt="Chariz Singian Fontanilla" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                                        <p class="text-xs uppercase font-bold tracking-wider text-rose-200">Chariz S. Fontanilla</p>
+                                        <h3 class="text-lg font-bold font-serif">Aurora, Philippines</h3>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between text-xs text-slate-600 dark:text-rose-300 font-semibold">
+                                    <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-rosebrand-500"></i> Dinalungan, Aurora</span>
+                                    <span class="flex items-center gap-1"><i data-lucide="languages" class="w-3.5 h-3.5 text-rosebrand-500"></i> EN / TL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Info & Objective -->
+        <section id="about" class="py-16 md:py-24 bg-white/60 dark:bg-darkcard/40 border-y border-rose-200/60 dark:border-rose-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-rosebrand-600 dark:text-rosebrand-400 mb-2">Personal Summary</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 dark:text-white">About Chariz</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- Objective Card -->
+                    <div class="lg:col-span-7 bg-gradient-to-br from-rose-50 to-pink-50/50 dark:from-darkcard dark:to-rose-950/40 p-8 rounded-3xl border border-rose-200 dark:border-rose-900/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-rosebrand-500 text-white flex items-center justify-center mb-6 shadow-md shadow-rosebrand-500/20">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-serif text-slate-900 dark:text-white mb-4">Career Objective</h3>
+                            <p class="text-slate-700 dark:text-rose-100/90 leading-relaxed text-base">
+                                "A forward-thinking Computer Science freshman with a strong academic foundation (Salutatorian, With High Honors) and practical administrative exposure from the Department of Engineering Office. Eager to blend technical curiosity with strong organizational skills in a dynamic part-time role, bringing a fresh perspective, dedication, and a fast-learning mindset to every task."
+                            </p>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-rose-200/80 dark:border-rose-900/60 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-rose-300">
+                            <span>FOCUS: CS & Administrative Operations</span>
+                            <span class="text-rosebrand-600 dark:text-rosebrand-400">Available Part-Time</span>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Grid -->
+                    <div class="lg:col-span-5 bg-white dark:bg-darkcard p-8 rounded-3xl border border-rose-200 dark:border-rose-900/80 shadow-sm">
+                        <h3 class="text-xl font-bold font-serif text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                            <i data-lucide="user-heart" class="w-5 h-5 text-rosebrand-500"></i> Personal Info
+                        </h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center justify-between pb-3 border-b border-rose-100 dark:border-rose-900/40">
+                                <span class="text-slate-500 dark:text-rose-300">Birthday</span>
+                                <span class="font-bold text-slate-800 dark:text-rose-100">May 17, 2008</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-3 border-b border-rose-100 dark:border-rose-900/40">
+                                <span class="text-slate-500 dark:text-rose-300">Citizenship</span>
+                                <span class="font-bold text-slate-800 dark:text-rose-100">Filipino</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-3 border-b border-rose-100 dark:border-rose-900/40">
+                                <span class="text-slate-500 dark:text-rose-300">Languages</span>
+                                <span class="font-bold text-slate-800 dark:text-rose-100">English, Tagalog</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-3 border-b border-rose-100 dark:border-rose-900/40">
+                                <span class="text-slate-500 dark:text-rose-300">Height / Weight</span>
+                                <span class="font-bold text-slate-800 dark:text-rose-100">4'11" / 42 kg</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500 dark:text-rose-300">Civil Status</span>
+                                <span class="font-bold text-slate-800 dark:text-rose-100">Single</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Photo Gallery Section -->
+        <section id="1.jpg" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-rosebrand-600 dark:text-rosebrand-400 mb-2">Visual Memories</h2>
+                        <p class="text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 dark:text-white">Photo Gallery</p>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-rose-300 mt-2 md:mt-0 max-w-sm">
+                        Moments from college events, high school milestones, family celebrations, and cherished friendships.
+                    </p>
+                </div>
+
+                <!-- Gallery Category Filters -->
+                <div class="flex flex-wrap gap-2 mb-10">
+                    <button onclick="filterGallery('all')" class="gallery-filter-btn px-5 py-2 rounded-2xl text-xs font-bold transition-all bg-rosebrand-500 text-white shadow-md" data-category="all">
+                        All Photos
+                    </button>
+                    <button onclick="filterGallery('college')" class="gallery-filter-btn px-5 py-2 rounded-2xl text-xs font-bold transition-all bg-white dark:bg-darkcard text-slate-700 dark:text-rose-200 border border-rose-200 dark:border-rose-900 hover:bg-rose-100" data-category="college">
+                        College & WUP-P
+                    </button>
+                    <button onclick="filterGallery('hs')" class="gallery-filter-btn px-5 py-2 rounded-2xl text-xs font-bold transition-all bg-white dark:bg-darkcard text-slate-700 dark:text-rose-200 border border-rose-200 dark:border-rose-900 hover:bg-rose-100" data-category="hs">
+                        High School Days
+                    </button>
+                    <button onclick="filterGallery('friends')" class="gallery-filter-btn px-5 py-2 rounded-2xl text-xs font-bold transition-all bg-white dark:bg-darkcard text-slate-700 dark:text-rose-200 border border-rose-200 dark:border-rose-900 hover:bg-rose-100" data-category="friends">
+                        Friends & Memories
+                    </button>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="galleryGrid">
+                    
+                    <!-- Photo 1: Sea Bridge Group -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="friends" onclick="openLightbox('Sea Bridge Community Outing', 'Cherished seaside trip with family and close community members in Aurora.', 'https://placehold.co/800x600/fecdd3/881337?text=Sea+Bridge+Community+Outing')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/fecdd3/881337?text=Sea+Bridge+Outing" alt="Sea Bridge Outing" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">Community & Family</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">Sea Bridge Outing</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Group seaside picture by the ocean pier with friends and family.</p>
+                    </div>
+
+                    <!-- Photo 2: WUP CCS Event Selfie -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="college" onclick="openLightbox('WUP-P CCS Event Selfie', 'College of Computer Studies sports and campus assembly at Wesleyan University Philippines.', 'https://placehold.co/800x600/fda4af/881337?text=WUP-P+CCS+Event+Selfie')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/fda4af/881337?text=CCS+Event+Selfie" alt="WUP CCS Event Selfie" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">College Life</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">CCS Student Assembly Selfie</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Fun selfie with fellow Computer Science students in uniform jerseys.</p>
+                    </div>
+
+                    <!-- Photo 3: Senior High Uniform Studio -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="hs" onclick="openLightbox('SHS Uniform Studio Snapshot', 'High school classmates in formal school uniforms with plaid ties.', 'https://placehold.co/800x600/fb7185/ffffff?text=SHS+Uniform+Studio+Photo')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/fb7185/ffffff?text=SHS+Uniform+Photo" alt="Senior High Uniform Studio" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">Senior High</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">SHS Uniform Squad</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Formal studio picture with close high school friends in uniform.</p>
+                    </div>
+
+                    <!-- Photo 4: Acquaintance Party Photo Booth -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="hs" onclick="openLightbox('Acquaintance Party Photobooth Strip', 'Fun photobooth strip memories with cute props and plushies.', 'https://placehold.co/800x600/e11d48/ffffff?text=Acquaintance+Party+Photobooth')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/e11d48/ffffff?text=Photobooth+Strip" alt="Acquaintance Party Photo" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">Party Memories</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">Acquaintance Photobooth</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Unforgettable photobooth print strip from school night party.</p>
+                    </div>
+
+                    <!-- Photo 5: Blazer Presentation Squad -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="hs" onclick="openLightbox('Formal Presentation Squad', 'Group pose in formal blazers during academic immersion presentation.', 'https://placehold.co/800x600/be123c/ffffff?text=Formal+Blazer+Presentation')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/be123c/ffffff?text=Blazer+Squad" alt="Formal Blazer Presentation" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">Academic</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">Formal Presentation Squad</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Making peace signs with classmates after successful formal presentation.</p>
+                    </div>
+
+                    <!-- Photo 6: Childhood Birthday Party -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="friends" onclick="openLightbox('Childhood Birthday Cake Celebration', 'Throwback birthday party with cake surrounded by siblings and neighborhood friends.', 'https://placehold.co/800x600/f43f5e/ffffff?text=Childhood+Birthday+Celebration')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/f43f5e/ffffff?text=Childhood+Birthday" alt="Childhood Birthday Celebration" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">Throwback</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">Childhood Birthday Party</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Sweet memory around the birthday cake with kids and family.</p>
+                    </div>
+
+                    <!-- Photo 7: CCS Mass Assembly Stage Photo -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="college" onclick="openLightbox('College of Computer Studies Mass Assembly', 'WUP-P CCS department celebrating 1st runner-up victory together.', 'https://placehold.co/800x600/9f1239/ffffff?text=WUP+CCS+Mass+Assembly')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/9f1239/ffffff?text=CCS+Mass+Assembly" alt="College of Computer Studies Assembly" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">College Event</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">CCS Mass Stage Group</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Big department stage celebration with Computer Studies students.</p>
+                    </div>
+
+                    <!-- Photo 8: High School Gala Night -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="hs" onclick="openLightbox('High School Acquaintance Formal Gala', 'Glamorous night out in suits and evening dresses with batchmates.', 'https://placehold.co/800x600/881337/ffffff?text=High+School+Gala+Formal')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/881337/ffffff?text=Formal+Gala+Night" alt="High School Gala Formal" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">Formal Night</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">SHS Formal Gala Night</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">High school formal evening event with classmates in red and black attire.</p>
+                    </div>
+
+                    <!-- Photo 9: Outdoor Friends Selfie -->
+                    <div class="gallery-item polaroid-card bg-white dark:bg-darkcard p-4 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-md cursor-pointer" data-category="friends" onclick="openLightbox('Outdoor Friends Adventure Selfie', 'Fun outdoor bonding and walk with close friends on a sunny day.', 'https://placehold.co/800x600/fda4af/9f1239?text=Outdoor+Friends+Selfie')">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-rose-100 dark:bg-rose-950 mb-3 relative">
+                            <img src="https://placehold.co/600x450/fda4af/9f1239?text=Outdoor+Friends+Selfie" alt="Outdoor Friends Selfie" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-white/90 text-rosebrand-700 backdrop-blur-sm">Friends Outing</span>
+                        </div>
+                        <h4 class="font-bold font-serif text-slate-900 dark:text-white text-base">Outdoor Squad Selfie</h4>
+                        <p class="text-xs text-slate-500 dark:text-rose-300 mt-1 line-clamp-2">Casual outdoor selfie during weekend stroll with friends.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Experience Timeline -->
+        <section id="education" class="py-16 md:py-24 bg-white/60 dark:bg-darkcard/40 border-y border-rose-200/60 dark:border-rose-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Education Column -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-rosebrand-500 text-white flex items-center justify-center font-bold">
+                                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xs font-bold uppercase tracking-wider text-rosebrand-600 dark:text-rosebrand-400">Academic Pathway</h2>
+                                <h3 class="text-2xl font-bold font-serif text-slate-900 dark:text-white">Education History</h3>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-white dark:bg-darkcard p-6 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 dark:bg-rose-950 text-rosebrand-700 dark:text-rose-300">College • 2026</span>
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-2">Wesleyan University Philippines</h4>
+                                <p class="text-xs text-slate-500 dark:text-rose-300">Maria Aurora Campus</p>
+                                <p class="text-sm font-semibold text-rosebrand-600 dark:text-rosebrand-400 mt-2">Bachelor of Science in Computer Science (1st Year)</p>
+                            </div>
+
+                            <div class="bg-white dark:bg-darkcard p-6 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">Senior High • 2025 – 2026</span>
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-2">Mariano D. Marquez National High School</h4>
+                                <p class="text-xs font-bold text-amber-600 dark:text-amber-400 mt-0.5">Salutatorian, With High Honor</p>
+                                <p class="text-sm text-slate-600 dark:text-rose-200 mt-2">Strand: HUMSS Student (Humanities & Social Sciences)</p>
+                            </div>
+
+                            <div class="bg-white dark:bg-darkcard p-6 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-rose-300">Junior High & Elementary</span>
+                                <p class="text-sm font-bold text-slate-800 dark:text-white mt-2">Mariano D. Marquez National High School (2022-2023)</p>
+                                <p class="text-sm font-bold text-slate-800 dark:text-white mt-1">Paulino L. Bautista Elementary School</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience Column -->
+                    <div id="experience" class="lg:col-span-6 space-y-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-pink-500 text-white flex items-center justify-center font-bold">
+                                <i data-lucide="briefcase" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xs font-bold uppercase tracking-wider text-rosebrand-600 dark:text-rosebrand-400">Practical Exposure</h2>
+                                <h3 class="text-2xl font-bold font-serif text-slate-900 dark:text-white">Work Experience</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-darkcard p-6 sm:p-8 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-rose-100 dark:border-rose-900/40">
+                                <div>
+                                    <h4 class="text-xl font-bold text-slate-900 dark:text-white">Work Immersion Trainee</h4>
+                                    <p class="text-sm font-semibold text-rosebrand-600 dark:text-rosebrand-400">Department of Engineering Office</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">10 Days (80 Hours)</span>
+                            </div>
+
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Responsibilities Developed:</p>
+                            <ul class="space-y-3 text-sm text-slate-700 dark:text-rose-200">
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check-circle2" class="w-4 h-4 text-rosebrand-500 shrink-0 mt-0.5"></i>
+                                    <span><strong>Administrative & Office Support:</strong> Mastered document filing, records organization, archiving, and systematic data sorting.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check-circle2" class="w-4 h-4 text-rosebrand-500 shrink-0 mt-0.5"></i>
+                                    <span><strong>Communication & Frontline Service:</strong> Handled professional correspondence, inquiries, and inter-office coordination with clarity.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check-circle2" class="w-4 h-4 text-rosebrand-500 shrink-0 mt-0.5"></i>
+                                    <span><strong>Time Management:</strong> Practiced strict punctuality and task prioritization in a fast-paced government office.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check-circle2" class="w-4 h-4 text-rosebrand-500 shrink-0 mt-0.5"></i>
+                                    <span><strong>Basic Technical Operations:</strong> Utilized office equipment (printers, scanners) and digital tools for record keeping.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & References Section -->
+        <section id="skills" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-rosebrand-600 dark:text-rosebrand-400 mb-2">Capabilities</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 dark:text-white">Skills & References</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                    <!-- Technical Skills -->
+                    <div class="bg-white dark:bg-darkcard p-6 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-rose-100 dark:bg-rose-950 text-rosebrand-600 flex items-center justify-center mb-4">
+                            <i data-lucide="code-2" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-lg mb-3">Technical Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-rose-50 dark:bg-rose-950/60 text-rosebrand-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900">Basic Programming Concepts</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-rose-50 dark:bg-rose-950/60 text-rosebrand-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900">MS Office Suite</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-rose-50 dark:bg-rose-950/60 text-rosebrand-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900">Google Workspace</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-rose-50 dark:bg-rose-950/60 text-rosebrand-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900">Accurate Data Entry</span>
+                        </div>
+                    </div>
+
+                    <!-- Workplace Skills -->
+                    <div class="bg-white dark:bg-darkcard p-6 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-pink-100 dark:bg-pink-950 text-pink-600 flex items-center justify-center mb-4">
+                            <i data-lucide="folder-check" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-lg mb-3">Workplace Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-pink-50 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-900">Record Keeping</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-pink-50 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-900">Document Management</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-pink-50 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-900">Multitasking</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-pink-50 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-900">Attention to Detail</span>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="bg-white dark:bg-darkcard p-6 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center mb-4">
+                            <i data-lucide="sparkle" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white text-lg mb-3">Soft Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-900">Effective Communication</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-900">Teamwork & Leadership</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-900">Adaptability</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-medium bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-900">Fast Learner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reference Banner -->
+                <div class="bg-gradient-to-r from-rosebrand-600 via-rosebrand-500 to-pink-600 rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-white/20 text-xs font-bold tracking-wider uppercase mb-2 inline-block">Character Reference</span>
+                        <h4 class="text-2xl font-bold font-serif">Julius J. Pablo</h4>
+                        <p class="text-rose-100 text-sm">Head of Department of Engineering Office</p>
+                    </div>
+                    <div class="text-right flex flex-col items-center md:items-end">
+                        <span class="text-xs text-rose-100">Contact Number</span>
+                        <span class="text-lg font-bold">09876567456</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creative Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-white/60 dark:bg-darkcard/40 border-t border-rose-200/60 dark:border-rose-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <h2 class="text-xs font-bold uppercase tracking-widest text-rosebrand-600 dark:text-rosebrand-400 mb-2">Connect With Me</h2>
+                            <h3 class="text-3xl font-bold font-serif text-slate-900 dark:text-white">Get In Touch</h3>
+                        </div>
+                        <p class="text-slate-600 dark:text-rose-200 text-sm leading-relaxed">
+                            Feel free to reach out for part-time opportunities, academic inquiries, or technological collaborations.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-darkcard border border-rose-200 dark:border-rose-900">
+                                <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rosebrand-600 flex items-center justify-center shrink-0">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <div class="text-[10px] text-slate-400 uppercase font-bold">Email</div>
+                                    <a href="mailto:charizsingianfontanill@gmail.com" class="text-sm font-bold text-slate-800 dark:text-rose-100 hover:text-rosebrand-600 truncate block">charizsingianfontanill@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-darkcard border border-rose-200 dark:border-rose-900">
+                                <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rosebrand-600 flex items-center justify-center shrink-0">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-slate-400 uppercase font-bold">Phone / Mobile</div>
+                                    <a href="tel:09703937136" class="text-sm font-bold text-slate-800 dark:text-rose-100 hover:text-rosebrand-600">09703937136</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-darkcard border border-rose-200 dark:border-rose-900">
+                                <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950 text-rosebrand-600 flex items-center justify-center shrink-0">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] text-slate-400 uppercase font-bold">Location</div>
+                                    <span class="text-sm font-bold text-slate-800 dark:text-rose-100">Barangay Simbahan, Dinalungan, Aurora</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Card -->
+                    <div class="lg:col-span-7 bg-white dark:bg-darkcard p-8 rounded-3xl border border-rose-200 dark:border-rose-900 shadow-sm">
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-500 dark:text-rose-300 mb-1">Your Name</label>
+                                    <input type="text" required placeholder="Jane Doe" class="w-full px-4 py-3 rounded-2xl bg-pinkbg dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-sm focus:outline-none focus:border-rosebrand-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-500 dark:text-rose-300 mb-1">Your Email</label>
+                                    <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-3 rounded-2xl bg-pinkbg dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-sm focus:outline-none focus:border-rosebrand-500">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 dark:text-rose-300 mb-1">Subject</label>
+                                <input type="text" required placeholder="Part-Time Opportunity / Inquiry" class="w-full px-4 py-3 rounded-2xl bg-pinkbg dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-sm focus:outline-none focus:border-rosebrand-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 dark:text-rose-300 mb-1">Message</label>
+                                <textarea rows="4" required placeholder="Write your message here..." class="w-full px-4 py-3 rounded-2xl bg-pinkbg dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-sm focus:outline-none focus:border-rosebrand-500"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-2xl bg-rosebrand-600 hover:bg-rosebrand-500 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Lightbox Modal -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="relative max-w-3xl w-full bg-white dark:bg-darkcard rounded-3xl overflow-hidden shadow-2xl border border-rose-200 dark:border-rose-900">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-900/60 text-white flex items-center justify-center hover:bg-slate-900 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="max-h-[70vh] bg-black flex items-center justify-center">
+                <img id="lightboxImg" src="" alt="Modal preview" class="max-h-[70vh] w-auto object-contain">
+            </div>
+            <div class="p-6">
+                <h3 id="lightboxTitle" class="text-xl font-bold font-serif text-slate-900 dark:text-white">Photo Title</h3>
+                <p id="lightboxDesc" class="text-xs sm:text-sm text-slate-600 dark:text-rose-200 mt-2">Description details</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-pink border border-rose-300 dark:border-rose-800 shadow-2xl px-5 py-3 rounded-2xl flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-rosebrand-500 text-white flex items-center justify-center">
+                <i data-lucide="check" class="w-4 h-4"></i>
+            </div>
+            <span id="toastMsg" class="text-xs font-bold text-slate-800 dark:text-rose-100">Action performed</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-rose-200/60 dark:border-rose-900/50 bg-white dark:bg-darkcard py-8 text-xs text-slate-500 dark:text-rose-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                © 2026 Chariz Singian Fontanilla. Crafted with 💕 Pink Aesthetic.
+            </div>
+            <div class="flex items-center gap-4">
+                <span>Wesleyan University Philippines</span>
+                <span>•</span>
+                <span>BS Computer Science</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // Dark / Light Theme Toggle
+        const themeToggleBtn = document.getElementById('themeToggle');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Copy Helper
+        function copyToClipboard(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(message);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        // Gallery Filter Logic
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const btns = document.querySelectorAll('.gallery-filter-btn');
+
+            btns.forEach(btn => {
+                if(btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-rosebrand-500', 'text-white', 'shadow-md');
+                    btn.classList.remove('bg-white', 'dark:bg-darkcard', 'text-slate-700', 'dark:text-rose-200');
+                } else {
+                    btn.classList.remove('bg-rosebrand-500', 'text-white', 'shadow-md');
+                    btn.classList.add('bg-white', 'dark:bg-darkcard', 'text-slate-700', 'dark:text-rose-200');
+                }
+            });
+
+            items.forEach(item => {
+                if(category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox Logic
+        function openLightbox(title, desc, imgUrl) {
+            document.getElementById('lightboxTitle').textContent = title;
+            document.getElementById('lightboxDesc').textContent = desc;
+            document.getElementById('lightboxImg').src = imgUrl;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast('Thank you! Your message has been sent.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
